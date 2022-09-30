@@ -8,5 +8,11 @@
 </head>
 <body>
     <h1>Index</h1>
+    {% for watch in watches %}
+    <h3>{{watch.name}}</h3>
+    <p>Size: {{watch.size}}</p>
+    <p>Color: {{watch.primary_color}}</p>
+    <img src="{{watch.image}}" />
+    {% endfor %}
 </body>
 </html>
