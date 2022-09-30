@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'watch_collector.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'spotify',
+        'NAME': 'watches',
     }
 }
 

@@ -5,7 +5,8 @@ from django.db import models
 class Watch(models.Model):
     name = models.CharField(max_length=100)
     size = models.IntegerField()
-    primary_color = models.Choices(
+    primary_color = models.CharField(
+        max_length=15,
         choices=[
             ("Black", "black"),
             ("White", "white"),
