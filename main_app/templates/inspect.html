@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}
+{{watch.name}}
+{% endblock %}
+{% block content %}
+<h1>{{watch.name}}</h1>
+<p>{{watch.size}}</p>
+<img src="{{watch.image}}" />
+{% endblock %}
