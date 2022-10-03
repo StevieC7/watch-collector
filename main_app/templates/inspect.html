@@ -4,7 +4,14 @@
 {% endblock %}
 {% block content %}
 <h1>{{watch.name}}</h1>
-<p>{{watch.size}}</p>
+<p>Size: {{watch.size}}</p>
+<p>Does John Mayer own it? {{watch.jm_owns}}</p>
+{% if watch.jm_owns == True %}
+<p>Other watches of this brand that JM owns:</p>
+{% for other in watch.mayer_also_owns.1 %}
+    <p>{{other.name}}</p>
+{% endfor %}
+{% endif %}
 <img src="{{watch.image}}" />
 <button><a href="{% url 'update_watch' watch.pk %}">Edit Watch</a></button>
 <button><a href="/watches/{{watch.id}}/delete">Delete Watch</a></button>

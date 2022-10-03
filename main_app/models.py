@@ -23,8 +23,13 @@ class Watch(models.Model):
         default="Black"
     )
     image = models.CharField(max_length=100)
+    jm_owns = models.BooleanField(default=False)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name="watches", default=1)
     
+    def mayer_also_owns(self):
+        also_owns = [ self.jm_owns, Watch.objects.filter(brand = self.brand).filter(jm_owns = True).exclude(id = self.pk)]
+        return also_owns
+
     def __str__(self):
         return self.name
 
