@@ -39,13 +39,14 @@ class AddWatch(View):
         size = request.POST.get("size")
         image = request.POST.get("image")
         primary_color = request.POST.get("primary_color")
+        jm_owns = request.POST.get("jm_owns")
         brand = Brand.objects.get(pk=pk)
-        Watch.objects.create(name=name, size=size, image=image,primary_color=primary_color,brand=brand)
+        Watch.objects.create(name=name, size=size, image=image,primary_color=primary_color,brand=brand, jm_owns=jm_owns)
         return redirect('brand_inspect', pk=pk)
 
 class UpdateWatch(UpdateView):
     model = Watch
-    fields = ['name', 'size', 'image', 'primary_color', 'brand']
+    fields = ['name', 'size', 'image', 'primary_color', 'brand', 'jm_owns']
     template_name = 'watch_update.html'
     success_url = 'index/'
 
@@ -62,4 +63,15 @@ class AddBrand(CreateView):
     model = Brand
     fields = ['name']
     template_name = 'create.html'
+    success_url = '/'
+
+class UpdateBrand(UpdateView):
+    model = Brand
+    fields = ['name']
+    template_name = 'brand_update.html'
+    success_url = 'index/'
+
+class DeleteBrand(DeleteView):
+    model = Brand
+    template_name = 'brand_delete.html'
     success_url = '/'
