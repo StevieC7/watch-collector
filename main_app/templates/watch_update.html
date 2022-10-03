@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}
+Update {{watch.name}}
+{% endblock %}
+{% block content %}
+<h1>Update {{watch.name}}</h1>
+<form>
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}

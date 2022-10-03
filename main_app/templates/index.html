@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
-</head>
-<body>
-    <h1>Index</h1>
-    {% for watch in watches %}
-    <h3>{{watch.name}}</h3>
-    <p>Size: {{watch.size}}</p>
-    <p>Color: {{watch.primary_color}}</p>
-    <img src="{{watch.image}}" />
-    {% endfor %}
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}
+All Watches
+{% endblock %}
+{% block content %}
+<h1>All Watches</h1>
+{% for watch in watches %}
+<h3>{{watch.name}}</h3>
+<p>Size: {{watch.size}}</p>
+<p>Color: {{watch.primary_color}}</p>
+<img src="{{watch.image}}" />
+{% endfor %}
+{% endblock %}

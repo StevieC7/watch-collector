@@ -5,7 +5,7 @@ Home
 {% block content %}
 <h1>Home</h1>
 {% for brand in brands %}
-<h2>{{ brand.name }}</h2>
+<h2><a href="{% url 'brand_inspect' brand.pk %}">{{ brand.name }}</a></h2>
 <ul>
     {% for watch in brand.watches.all %}
     <li><a href="{% url 'inspect' watch.pk %}">{{watch.name}}</a></li>

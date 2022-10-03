@@ -7,6 +7,12 @@
     <title>Watch Collector | {% block title %}{% endblock %}</title>
 </head>
 <body>
+    <nav>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'index' %}">All Watches</a></li>
+        <li><a href="{% url 'add_brand' %}">Add Brand</a></li>
+    </nav>
     {% block content %}{% endblock %}
 </body>
 </html>

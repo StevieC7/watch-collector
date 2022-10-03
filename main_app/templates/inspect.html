@@ -6,4 +6,6 @@
 <h1>{{watch.name}}</h1>
 <p>{{watch.size}}</p>
 <img src="{{watch.image}}" />
+<button><a href="{% url 'update_watch' watch.pk %}">Edit Watch</a></button>
+<button><a href="/watches/{{watch.id}}/delete">Delete Watch</a></button>
 {% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ brand.name }}
+{% endblock %}
+{% block content %}
+<h1>{{ brand.name }}</h1>
+<ul>
+    {% for watch in brand.watches.all %}
+    <li><a href="{% url 'inspect' watch.pk %}">{{watch.name}}</a></li>
+    {% endfor %}
+</ul>
+<h2>Add Watch to Collection</h2>
+<form action="{% url 'add_watch' brand.pk %}" method="POST">
+    {% csrf_token %}
+    <div class="field has-addons">
+        <div class="control">
+            <input
+                class="input"
+                type="text"
+                name="name"
+                placeholder="name"
+                required
+            />
+        </div>
+        <div class="control">
+            <input
+                class="input"
+                type="text"
+                name="size"
+                placeholder="size"
+                required
+            />
+        </div>
+        <div class="control">
+            <input
+                class="input"
+                type="text"
+                name="image"
+                placeholder="image url"
+                required
+            />
+        </div>
+        <div class="control">
+            <input
+                class="input"
+                type="select"
+                name="primary_color"
+                placeholder="primary color"
+                required
+            />
+        </div>
+        <div class="control">
+            <input class="button is-primary" type="submit" value="Add Watch" />
+        </div>
+    </div>
+</form>
+{% endblock %}

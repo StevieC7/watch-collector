@@ -1,6 +1,8 @@
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, View
 from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
+from django.shortcuts import redirect
 from .models import Watch, Brand
 
 # Create your views here.
@@ -30,3 +32,34 @@ class Index(ListView):
 class Inspect(DetailView):
     model = Watch
     template_name = "inspect.html"
+
+class AddWatch(View):
+    def post(self, request, pk):
+        name = request.POST.get("name")
+        size = request.POST.get("size")
+        image = request.POST.get("image")
+        primary_color = request.POST.get("primary_color")
+        brand = Brand.objects.get(pk=pk)
+        Watch.objects.create(name=name, size=size, image=image,primary_color=primary_color,brand=brand)
+        return redirect('brand_inspect', pk=pk)
+
+class UpdateWatch(UpdateView):
+    model = Watch
+    fields = ['name', 'size', 'image', 'primary_color', 'brand']
+    template_name = 'watch_update.html'
+    success_url = 'index/'
+
+class DeleteWatch(DeleteView):
+    model = Watch
+    template_name = 'watch_delete.html'
+    success_url = '/'
+
+class BrandInspect(DetailView):
+    model = Brand
+    template_name = "brand_inspect.html"
+
+class AddBrand(CreateView):
+    model = Brand
+    fields = ['name']
+    template_name = 'create.html'
+    success_url = '/'
