@@ -11,12 +11,12 @@ Home
     <li><a href="{% url 'inspect' watch.pk %}">{{watch.name}}</a></li>
     {% endfor %}
 </ul>
+{% endfor %}
 <h2>Collections</h2>
 {% for collection in collections %}
     <h3>{{collection.name}}</h3>
     {% for watch in collection.watches.all %}
     <p>{{watch.name}}</p>
     {% endfor %}
-{% endfor %}
 {% endfor %}
 {% endblock %}
