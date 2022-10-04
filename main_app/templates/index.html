@@ -3,11 +3,23 @@
 All Watches
 {% endblock %}
 {% block content %}
-<h1>All Watches</h1>
-{% for watch in watches %}
-<h3>{{watch.name}}</h3>
-<p>Size: {{watch.size}}</p>
-<p>Color: {{watch.primary_color}}</p>
-<img src="{{watch.image}}" />
-{% endfor %}
+<h1 class="title is-1 mx-5">All Watches</h1>
+<div class="columns is-multiline mx-5">
+    {% for watch in watches %}
+    <div class="column is-one-quarter">
+        <div class="card">
+            <div class="card-image">
+                <figure class="image">
+                    <img src="{{watch.image}}" />
+                </figure>
+            </div>
+            <div class="card-content">
+                <h3 class="title is-3">{{watch.name}}</h3>
+                <p>Size: {{watch.size}}</p>
+                <p>Color: {{watch.primary_color}}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

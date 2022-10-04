@@ -3,18 +3,18 @@
 {{ brand.name }}
 {% endblock %}
 {% block content %}
-<h1>{{ brand.name }}</h1>
+<h1 class="title is-1">{{ brand.name }}</h1>
 <ul>
     {% for watch in brand.watches.all %}
     <li>
         <a href="{% url 'inspect' watch.pk %}">{{watch.name}}</a>
         {% for collection in collections %}
-        <button><a href="{% url 'collection_watch_assoc' collection.pk watch.pk %}?assoc=add">Add to Collection: {{collection.name}}</a></button>
+        <button class="button"><a href="{% url 'collection_watch_assoc' collection.pk watch.pk %}?assoc=add">Add to Collection: {{collection.name}}</a></button>
         {% endfor %}
     </li>
     {% endfor %}
 </ul>
-<h2>Add Watch to Collection</h2>
+<h2 class="title is-2">Add Watch to Collection</h2>
 <form action="{% url 'add_watch' brand.pk %}" method="POST">
     {% csrf_token %}
     <div class="field has-addons">

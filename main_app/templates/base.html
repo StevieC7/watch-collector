@@ -5,13 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch Collector | {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 <body>
-    <nav>
-        <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="{% url 'about' %}">About</a></li>
-        <li><a href="{% url 'index' %}">All Watches</a></li>
-        <li><a href="{% url 'add_brand' %}">Add Brand</a></li>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{% url 'home' %}">Home</a>
+            <a class="navbar-item" href="{% url 'about' %}">About</a>
+            <a class="navbar-item" href="{% url 'index' %}">All Watches</a>
+            <a class="navbar-item" href="{% url 'add_brand' %}">Add Brand</a>
+        </div>
     </nav>
     {% block content %}{% endblock %}
 </body>

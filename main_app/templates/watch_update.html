@@ -3,7 +3,7 @@
 Update {{watch.name}}
 {% endblock %}
 {% block content %}
-<h1>Update {{watch.name}}</h1>
+<h1 class="title is-1">Update {{watch.name}}</h1>
 <form>
     {% csrf_token %}
     {{form.as_p}}

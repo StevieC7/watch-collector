@@ -3,18 +3,18 @@
 Home
 {% endblock %}
 {% block content %}
-<h1>Home</h1>
+<h1 class="title is-1">Home</h1>
 {% for brand in brands %}
-<h2><a href="{% url 'brand_inspect' brand.pk %}">{{ brand.name }}</a></h2>
+<h2 class="title is-2"><a href="{% url 'brand_inspect' brand.pk %}">{{ brand.name }}</a></h2>
 <ul>
     {% for watch in brand.watches.all %}
     <li><a href="{% url 'inspect' watch.pk %}">{{watch.name}}</a></li>
     {% endfor %}
 </ul>
 {% endfor %}
-<h2>Collections</h2>
+<h2 class="title is-2">Collections</h2>
 {% for collection in collections %}
-<h3>{{collection.name}}</h3>
+<h3 class="title is-3">{{collection.name}}</h3>
     {% for watch in collection.watches.all %}
     <p>{{watch.name}}</p>
     <a href="{% url 'collection_watch_assoc' collection.pk watch.pk %}?assoc=remove">Remove Watch</a>

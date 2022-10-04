@@ -3,7 +3,7 @@
 {{watch.name}}
 {% endblock %}
 {% block content %}
-<h1>{{watch.name}}</h1>
+<h1 class="title is-1">{{watch.name}}</h1>
 <p>Size: {{watch.size}}</p>
 <p>Does John Mayer own it? {{watch.jm_owns}}</p>
 {% if watch.jm_owns == True %}
@@ -13,6 +13,6 @@
 {% endfor %}
 {% endif %}
 <img src="{{watch.image}}" />
-<button><a href="{% url 'update_watch' watch.pk %}">Edit Watch</a></button>
-<button><a href="/watches/{{watch.id}}/delete">Delete Watch</a></button>
+<button class="button is-primary"><a href="{% url 'update_watch' watch.pk %}">Edit Watch</a></button>
+<button class="button is-danger"><a href="/watches/{{watch.id}}/delete">Delete Watch</a></button>
 {% endblock %}

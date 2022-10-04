@@ -3,7 +3,7 @@
 Confirm Deletion
 {% endblock %}
 {% block content %}
-<h2>Are you sure you want to delete {{watch.name}}?</h2>
+<h2 class="title is-2">Are you sure you want to delete {{watch.name}}?</h2>
 <form method="POST">
     {% csrf_token %}
     <input type="submit" value="Confirm" />
