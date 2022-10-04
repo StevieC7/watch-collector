@@ -57,6 +57,16 @@ class DeleteWatch(DeleteView):
     template_name = 'watch_delete.html'
     success_url = '/'
 
+class BrandIndex(ListView):
+    template_name = "brand_index.html"
+    model = Brand
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["brands"] = Brand.objects.all()
+        return context
+
 class BrandInspect(DetailView):
     model = Brand
     template_name = "brand_inspect.html"
@@ -94,3 +104,19 @@ class CollectionSongAssoc(View):
             Collection.objects.get(pk=pk).watches.add(watch_pk)
 
         return redirect('home')
+
+class CollectionIndex(ListView):
+    template_name = "collection_index.html"
+    model = Collection
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["collections"] = Collection.objects.all()
+        return context
+
+class AddCollection(CreateView):
+    model = Collection
+    fields = ['name']
+    template_name = 'collection_create.html'
+    success_url = '/collections/'

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+Create Collection
+{% endblock %}
+{% block content %}
+<form action="{% url 'add_collection' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="button is-primary" type="submit" value="Add Collection" />
+</form>
+{% endblock %}

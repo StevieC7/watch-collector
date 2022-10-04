@@ -3,21 +3,38 @@
 Home
 {% endblock %}
 {% block content %}
-<h1 class="title is-1">Home</h1>
+<h1 class="title is-1">Watch Collector</h1>
+<h2 class="subtitle">The home for watch collections. Yours, your friends', or celebrities', we don't care. Track 'em here.</h2>
 {% for brand in brands %}
 <h2 class="title is-2"><a href="{% url 'brand_inspect' brand.pk %}">{{ brand.name }}</a></h2>
-<ul>
+<div class="columns is-multiline">
     {% for watch in brand.watches.all %}
-    <li><a href="{% url 'inspect' watch.pk %}">{{watch.name}}</a></li>
+    <div class="column is-one-quarter">
+        <a href="{% url 'inspect' watch.pk %}">
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image is-square">
+                        <img src="{{watch.image}}" style="object-fit: cover;">
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <p>{{watch.name}}</p>
+                </div>
+            </div>
+        </a>
+    </div>
     {% endfor %}
-</ul>
+</div>
 {% endfor %}
 <h2 class="title is-2">Collections</h2>
 {% for collection in collections %}
 <h3 class="title is-3">{{collection.name}}</h3>
     {% for watch in collection.watches.all %}
     <p>{{watch.name}}</p>
-    <a href="{% url 'collection_watch_assoc' collection.pk watch.pk %}?assoc=remove">Remove Watch</a>
+    <span class="tag is-danger">
+        Remove from collection
+        <button class="delete" type="button" onclick="location.href='{% url 'collection_watch_assoc' collection.pk watch.pk %}?assoc=remove'"></button>
+    </span>
     {% endfor %}
 {% endfor %}
 {% endblock %}
