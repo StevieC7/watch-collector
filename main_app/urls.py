@@ -13,4 +13,5 @@ urlpatterns = [
     path('watches/<int:pk>/update', views.UpdateWatch.as_view(), name="update_watch"),
     path('watches/<int:pk>/delete', views.DeleteWatch.as_view(), name="delete_watch"),
     path('brands/<int:pk>/watches/new/', views.AddWatch.as_view(), name="add_watch"),
+    path('collections/<int:pk>/watches/<int:watch_pk>/', views.CollectionSongAssoc.as_view(), name="collection_watch_assoc"),
 ]

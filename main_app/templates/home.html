@@ -14,9 +14,10 @@ Home
 {% endfor %}
 <h2>Collections</h2>
 {% for collection in collections %}
-    <h3>{{collection.name}}</h3>
+<h3>{{collection.name}}</h3>
     {% for watch in collection.watches.all %}
     <p>{{watch.name}}</p>
+    <a href="{% url 'collection_watch_assoc' collection.pk watch.pk %}?assoc=remove">Remove Watch</a>
     {% endfor %}
 {% endfor %}
 {% endblock %}

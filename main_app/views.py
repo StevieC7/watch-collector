@@ -1,3 +1,4 @@
+from re import I
 from django.views.generic.base import TemplateView, View
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -76,3 +77,15 @@ class DeleteBrand(DeleteView):
     model = Brand
     template_name = 'brand_delete.html'
     success_url = '/'
+
+class CollectionSongAssoc(View):
+    def get(self,request,pk,watch_pk):
+        assoc = request.GET.get("assoc")
+        
+        if assoc == "remove":
+            Collection.objects.get(pk=pk).watches.remove(watch_pk)
+
+        if assoc == "add":
+            Collection.objects.get(pk=pk).watches.add(watch_pk)
+
+        return redirect('home')
