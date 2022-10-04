@@ -35,3 +35,10 @@ class Watch(models.Model):
 
     class Meta:
         ordering = ['name']
+
+class Collection(models.Model):
+    name = models.CharField(max_length=100)
+    watches = models.ManyToManyField(Watch)
+
+    def __str__(self):
+        return self.name

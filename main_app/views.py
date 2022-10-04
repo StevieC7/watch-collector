@@ -3,7 +3,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django.shortcuts import redirect
-from .models import Watch, Brand
+from .models import Watch, Brand, Collection
 
 # Create your views here.
 class Home(ListView):
@@ -14,6 +14,7 @@ class Home(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["brands"] = Brand.objects.all()
+        context["collections"] = Collection.objects.all()
         return context
 
 class About(TemplateView):
