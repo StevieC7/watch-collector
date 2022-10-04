@@ -26,15 +26,13 @@ Home
     {% endfor %}
 </div>
 {% endfor %}
+{% if collections %}
 <h2 class="title is-2">Collections</h2>
 {% for collection in collections %}
 <h3 class="title is-3">{{collection.name}}</h3>
     {% for watch in collection.watches.all %}
     <p>{{watch.name}}</p>
-    <span class="tag is-danger">
-        Remove from collection
-        <button class="delete" type="button" onclick="location.href='{% url 'collection_watch_assoc' collection.pk watch.pk %}?assoc=remove'"></button>
-    </span>
     {% endfor %}
 {% endfor %}
+{% endif %}
 {% endblock %}

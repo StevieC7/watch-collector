@@ -50,7 +50,7 @@ class UpdateWatch(UpdateView):
     model = Watch
     fields = ['name', 'size', 'image', 'primary_color', 'brand', 'jm_owns']
     template_name = 'watch_update.html'
-    success_url = 'index/'
+    success_url = '/watches'
 
 class DeleteWatch(DeleteView):
     model = Watch
@@ -115,8 +115,22 @@ class CollectionIndex(ListView):
         context["collections"] = Collection.objects.all()
         return context
 
+class CollectionInspect(DetailView):
+    model = Collection
+    template_name = "collection_inspect.html"
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context["collections"] = Collection.objects.all()
+    #     return context
+
 class AddCollection(CreateView):
     model = Collection
     fields = ['name']
     template_name = 'collection_create.html'
     success_url = '/collections/'
+
+class DeleteCollection(DeleteView):
+    model = Collection
+    template_name = 'collection_delete.html'
+    success_url = '/'

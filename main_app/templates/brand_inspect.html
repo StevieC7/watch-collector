@@ -4,17 +4,31 @@
 {% endblock %}
 {% block content %}
 <h1 class="title is-1">{{ brand.name }}</h1>
-<ul>
+<button class="button is-danger"><a href="/brands/{{brand.id}}/delete">Delete Brand</a></button>
+<div class="columns is-multiline">
     {% for watch in brand.watches.all %}
-    <li>
-        <a href="{% url 'inspect' watch.pk %}">{{watch.name}}</a>
+    <div class="column is-one-quarter">
+        <a href="{% url 'inspect' watch.pk %}">
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image">
+                        <img src="{{watch.image}}" />
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <h3 class="title is-3">{{watch.name}}</h3>
+                    <p>Size: {{watch.size}}</p>
+                    <p>Color: {{watch.primary_color}}</p>
+                </div>
+            </div>
+        </a>
         {% for collection in collections %}
         <button class="button"><a href="{% url 'collection_watch_assoc' collection.pk watch.pk %}?assoc=add">Add to Collection: {{collection.name}}</a></button>
         {% endfor %}
-    </li>
+    </div>
     {% endfor %}
-</ul>
-<h2 class="title is-2">Add Watch to Collection</h2>
+</div>
+<h2 class="title is-2">Add Watch to Brand</h2>
 <form action="{% url 'add_watch' brand.pk %}" method="POST">
     {% csrf_token %}
     <div class="field has-addons">
@@ -45,14 +59,18 @@
                 required
             />
         </div>
-        <div class="control">
-            <input
-                class="input"
-                type="select"
+        <div class="select">
+            <select
+                class="select"
                 name="primary_color"
-                placeholder="primary color"
                 required
-            />
+            >
+                <option value="black">Black</option>
+                <option value="white">White</option>
+                <option value="brown">Brown</option>
+                <option value="gold">Gold</option>
+                <option value="silver">Silver</option>
+            </select>
         </div>
         <div class="control">
             John Mayer owns?

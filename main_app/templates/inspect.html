@@ -3,16 +3,23 @@
 {{watch.name}}
 {% endblock %}
 {% block content %}
-<h1 class="title is-1">{{watch.name}}</h1>
-<p>Size: {{watch.size}}</p>
-<p>Does John Mayer own it? {{watch.jm_owns}}</p>
-{% if watch.jm_owns == True %}
-<p>Other watches of this brand that JM owns:</p>
-{% for other in watch.mayer_also_owns.1 %}
-    <p>{{other.name}}</p>
-{% endfor %}
-{% endif %}
-<img src="{{watch.image}}" />
-<button class="button is-primary"><a href="{% url 'update_watch' watch.pk %}">Edit Watch</a></button>
-<button class="button is-danger"><a href="/watches/{{watch.id}}/delete">Delete Watch</a></button>
+<div class="columns is-centered">
+    <div class="column is-half">
+        <h1 class="title is-1">{{watch.name}}</h1>
+        <p>Brand: <a href="/brands/{{watch.brand.pk}}">{{watch.brand.name}}</a></p>
+        <figure class="image is-square">
+            <img src="{{watch.image}}" style="object-fit: cover; object-position: center;"/>
+        </figure>
+        <p>Size: {{watch.size}}</p>
+        <p>Does John Mayer own it? {{watch.jm_owns}}</p>
+        {% if watch.jm_owns == True %}
+        <p>Other watches of this brand that JM owns:</p>
+        {% for other in watch.mayer_also_owns.1 %}
+        <p>{{other.name}}</p>
+        {% endfor %}
+        {% endif %}
+        <button class="button is-primary"><a href="{% url 'update_watch' watch.pk %}">Edit Watch</a></button>
+        <button class="button is-danger"><a href="/watches/{{watch.id}}/delete">Delete Watch</a></button>
+    </div>
+</div>
 {% endblock %}

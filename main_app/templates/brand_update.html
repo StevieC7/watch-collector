@@ -4,7 +4,7 @@ Update {{brand.name}}
 {% endblock %}
 {% block content %}
 <h1 class="title is-1">Update {{brand.name}}</h1>
-<form>
+<form action="" method="POST">
     {% csrf_token %}
     {{form.as_p}}
     <input type="submit" value="Submit" />

@@ -4,7 +4,7 @@ Update {{watch.name}}
 {% endblock %}
 {% block content %}
 <h1 class="title is-1">Update {{watch.name}}</h1>
-<form>
+<form action="" method="post">
     {% csrf_token %}
     {{form.as_p}}
     <input type="submit" value="Submit" />

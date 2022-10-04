@@ -7,18 +7,20 @@ All Watches
 <div class="columns is-multiline mx-5">
     {% for watch in watches %}
     <div class="column is-one-quarter">
-        <div class="card">
-            <div class="card-image">
-                <figure class="image">
-                    <img src="{{watch.image}}" />
-                </figure>
+        <a href="{% url 'inspect' watch.pk %}">
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image">
+                        <img src="{{watch.image}}" />
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <h3 class="title is-3">{{watch.name}}</h3>
+                    <p>Size: {{watch.size}}</p>
+                    <p>Color: {{watch.primary_color}}</p>
+                </div>
             </div>
-            <div class="card-content">
-                <h3 class="title is-3">{{watch.name}}</h3>
-                <p>Size: {{watch.size}}</p>
-                <p>Color: {{watch.primary_color}}</p>
-            </div>
-        </div>
+        </a>
     </div>
     {% endfor %}
 </div>

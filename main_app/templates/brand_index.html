@@ -7,16 +7,23 @@ All Brands
 <div class="columns is-multiline mx-5">
     {% for brand in brands %}
     <div class="column is-one-quarter">
-        <div class="card">
-            <div class="card-content">
-                <h3 class="title is-3">{{brand.name}}</h3>
-                <ul>
-                    {% for watch in brand.watches.all %}
-                    <li><a href="/watches/{{watch.pk}}">{{watch.name}}</a></li>
-                    {% endfor %}
-                </ul>
+        <a href="{% url 'brand_inspect' brand.pk %}">
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image is-square">
+                        <img src="{{brand.watches.first.image}}" style="object-fit: cover;">
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <h3 class="title is-3">{{brand.name}}</h3>
+                    <ul>
+                        {% for watch in brand.watches.all %}
+                        <li><a href="/watches/{{watch.pk}}">{{watch.name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
     {% endfor %}
 </div>
