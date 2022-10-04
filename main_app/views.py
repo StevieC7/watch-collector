@@ -61,6 +61,11 @@ class BrandInspect(DetailView):
     model = Brand
     template_name = "brand_inspect.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["collections"] = Collection.objects.all()
+        return context
+
 class AddBrand(CreateView):
     model = Brand
     fields = ['name']

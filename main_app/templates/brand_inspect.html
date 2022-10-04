@@ -6,7 +6,12 @@
 <h1>{{ brand.name }}</h1>
 <ul>
     {% for watch in brand.watches.all %}
-    <li><a href="{% url 'inspect' watch.pk %}">{{watch.name}}</a></li>
+    <li>
+        <a href="{% url 'inspect' watch.pk %}">{{watch.name}}</a>
+        {% for collection in collections %}
+        <button><a href="{% url 'collection_watch_assoc' collection.pk watch.pk %}?assoc=add">Add to Collection: {{collection.name}}</a></button>
+        {% endfor %}
+    </li>
     {% endfor %}
 </ul>
 <h2>Add Watch to Collection</h2>
