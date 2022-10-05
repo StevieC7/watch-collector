@@ -3,7 +3,14 @@ from django.views.generic.base import TemplateView, View
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
+# Auth
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
+
 from .models import Watch, Brand, Collection
 
 # Create your views here.
@@ -76,6 +83,7 @@ class BrandInspect(DetailView):
         context["collections"] = Collection.objects.all()
         return context
 
+@method_decorator(login_required, name='dispatch')
 class AddBrand(CreateView):
     model = Brand
     fields = ['name']
@@ -112,7 +120,10 @@ class CollectionIndex(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["collections"] = Collection.objects.all()
+        if self.request.user.is_authenticated == True:
+            context["collections"] = Collection.objects.filter(user=self.request.user)
+        else:
+            context["collections"] = []
         return context
 
 class CollectionInspect(DetailView):
@@ -124,13 +135,35 @@ class CollectionInspect(DetailView):
     #     context["collections"] = Collection.objects.all()
     #     return context
 
+@method_decorator(login_required, name='dispatch')
 class AddCollection(CreateView):
     model = Collection
     fields = ['name']
     template_name = 'collection_create.html'
     success_url = '/collections/'
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(AddCollection, self).form_valid(form)
+
 class DeleteCollection(DeleteView):
     model = Collection
     template_name = 'collection_delete.html'
     success_url = '/'
+
+class Signup(View):
+    # show a form to fill out
+    def get(self, request):
+        form = UserCreationForm()
+        context = {"form": form}
+        return render(request, "registration/signup.html", context)
+    # on form submit, validate the form and login the user.
+    def post(self, request):
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("collection_index")
+        else:
+            context = {"form": form}
+            return render(request, "registration/signup.html", context)

@@ -1,5 +1,6 @@
 from unittest.util import _MAX_LENGTH
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Brand(models.Model):
@@ -39,6 +40,7 @@ class Watch(models.Model):
 class Collection(models.Model):
     name = models.CharField(max_length=100)
     watches = models.ManyToManyField(Watch)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.name

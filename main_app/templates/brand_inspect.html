@@ -4,7 +4,9 @@
 {% endblock %}
 {% block content %}
 <h1 class="title is-1">{{ brand.name }}</h1>
+{% if user.is_authenticated %}
 <button class="button is-danger"><a href="/brands/{{brand.id}}/delete">Delete Brand</a></button>
+{% endif %}
 <div class="columns is-multiline">
     {% for watch in brand.watches.all %}
     <div class="column is-one-quarter">
@@ -22,12 +24,15 @@
                 </div>
             </div>
         </a>
+        {% if user.is_authenticated %}
         {% for collection in collections %}
         <button class="button"><a href="{% url 'collection_watch_assoc' collection.pk watch.pk %}?assoc=add">Add to Collection: {{collection.name}}</a></button>
         {% endfor %}
+        {% endif %}
     </div>
     {% endfor %}
 </div>
+{% if user.is_authenticated %}
 <h2 class="title is-2">Add Watch to Brand</h2>
 <form action="{% url 'add_watch' brand.pk %}" method="POST">
     {% csrf_token %}
@@ -98,4 +103,5 @@
         </div>
     </div>
 </form>
+{% endif %}
 {% endblock %}
