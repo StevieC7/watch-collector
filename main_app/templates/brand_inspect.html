@@ -3,24 +3,31 @@
 {{ brand.name }}
 {% endblock %}
 {% block content %}
-<h1 class="title is-1">{{ brand.name }}</h1>
-{% if user.is_authenticated %}
-<button class="button is-danger"><a href="/brands/{{brand.id}}/delete">Delete Brand</a></button>
-{% endif %}
+<div class="columns is-vcentered">
+    <div class="column">
+        <h1 class="title is-1">{{ brand.name }}</h1>
+    </div>
+    <div class="column">
+        {% if user.is_authenticated %}
+        <a class="button is-danger" href="/brands/{{brand.id}}/delete">Delete Brand</a>
+        {% endif %}
+    </div>
+</div>
+
 <div class="columns is-multiline">
     {% for watch in brand.watches.all %}
     <div class="column is-one-quarter">
         <a href="{% url 'inspect' watch.pk %}">
             <div class="card">
                 <div class="card-image">
-                    <figure class="image">
-                        <img src="{{watch.image}}" />
+                    <figure class="image is-square">
+                        <img src="{{watch.image}}" style="object-fit: cover; object-position: center;" />
                     </figure>
                 </div>
                 <div class="card-content">
-                    <h3 class="title is-3">{{watch.name}}</h3>
-                    <p>Size: {{watch.size}}</p>
-                    <p>Color: {{watch.primary_color}}</p>
+                    <h3 class="title is-5">{{watch.name}}</h3>
+                    <p class="is-size-7">Size: {{watch.size}}</p>
+                    <p class="is-size-7">Color: {{watch.primary_color}}</p>
                 </div>
             </div>
         </a>
