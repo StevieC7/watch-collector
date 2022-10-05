@@ -21,6 +21,9 @@
         {% if user.is_authenticated %}
         <button class="button is-primary"><a href="{% url 'update_watch' watch.pk %}">Edit Watch</a></button>
         <button class="button is-danger"><a href="/watches/{{watch.id}}/delete">Delete Watch</a></button>
+        {% for collection in collections %}
+        <button class="button mt-5"><a href="{% url 'collection_watch_assoc' collection.pk watch.pk %}?assoc=add">Add to Collection: {{collection.name}}</a></button>
+        {% endfor %}
         {% endif %}
     </div>
 </div>

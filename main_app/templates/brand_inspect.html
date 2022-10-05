@@ -31,11 +31,6 @@
                 </div>
             </div>
         </a>
-        {% if user.is_authenticated %}
-        {% for collection in collections %}
-        <button class="button"><a href="{% url 'collection_watch_assoc' collection.pk watch.pk %}?assoc=add">Add to Collection: {{collection.name}}</a></button>
-        {% endfor %}
-        {% endif %}
     </div>
     {% endfor %}
 </div>
