@@ -3,7 +3,14 @@
 All Brands
 {% endblock %}
 {% block content %}
-<h1 class="title is-1 mx-5">All Brands</h1>
+<div class="columns is-vcentered">
+    <div class="column">
+        <h1 class="title is-1 mx-5">All Brands</h1>
+    </div>
+    <div class="column">
+        <a class="button is-primary m-5" href="{% url 'add_brand' %}">Add Collection</a>
+    </div>
+</div>
 <div class="columns is-multiline mx-5">
     {% for brand in brands %}
     <div class="column is-one-quarter">
@@ -15,10 +22,10 @@ All Brands
                     </figure>
                 </div>
                 <div class="card-content">
-                    <h3 class="title is-3">{{brand.name}}</h3>
+                    <h3 class="title is-5">{{brand.name}}</h3>
                     <ul>
                         {% for watch in brand.watches.all %}
-                        <li><a href="/watches/{{watch.pk}}">{{watch.name}}</a></li>
+                        <li><a href="/watches/{{watch.pk}}" class="is-size-7">{{watch.name}}</a></li>
                         {% endfor %}
                     </ul>
                 </div>

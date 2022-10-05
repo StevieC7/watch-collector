@@ -10,12 +10,12 @@ All Watches
         <a href="{% url 'inspect' watch.pk %}">
             <div class="card">
                 <div class="card-image">
-                    <figure class="image">
-                        <img src="{{watch.image}}" />
+                    <figure class="image is-square">
+                        <img src="{{watch.image}}" style="object-fit: cover; object-position: center;" />
                     </figure>
                 </div>
                 <div class="card-content">
-                    <h3 class="title is-3">{{watch.name}}</h3>
+                    <h3 class="title is-5">{{watch.name}}</h3>
                     <p>Size: {{watch.size}}</p>
                     <p>Color: {{watch.primary_color}}</p>
                 </div>

@@ -5,8 +5,33 @@ Home
 {% block content %}
 <h1 class="title is-1">Watch Collector</h1>
 <h2 class="subtitle">The home for watch collections. Yours, your friends', or celebrities', we don't care. Track 'em here.</h2>
+{% if collections %}
+<h2 class="title is-2 mt-6"><a href="{% url 'collection_index' %}">Collections</a></h2>
+<div class="columns is-multiline">
+    {% for collection in collections %}
+    <div class="column is-one-quarter">
+        <a href="{% url 'collection_inspect' collection.pk %}">
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image is-square">
+                        <img src="{{collection.watches.first.image}}" style="object-fit: cover;">
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <h3 class="title is-5">{{collection.name}}</h3>
+                    <ul>
+                        {% for watch in collection.watches.all %}
+                        <li><a href="/watches/{{watch.pk}}" class="is-size-7">{{watch.name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
 {% for brand in brands %}
-<h2 class="title is-2"><a href="{% url 'brand_inspect' brand.pk %}">{{ brand.name }}</a></h2>
+<h2 class="title is-2 mt-6"><a href="{% url 'brand_inspect' brand.pk %}">{{ brand.name }}</a></h2>
 <div class="columns is-multiline">
     {% for watch in brand.watches.all %}
     <div class="column is-one-quarter">
@@ -18,21 +43,13 @@ Home
                     </figure>
                 </div>
                 <div class="card-content">
-                    <p>{{watch.name}}</p>
+                    <h3 class="title is-5">{{watch.name}}</h3>
                 </div>
             </div>
         </a>
     </div>
     {% endfor %}
 </div>
-{% endfor %}
-{% if collections %}
-<h2 class="title is-2">Collections</h2>
-{% for collection in collections %}
-<h3 class="title is-3">{{collection.name}}</h3>
-    {% for watch in collection.watches.all %}
-    <p>{{watch.name}}</p>
-    {% endfor %}
 {% endfor %}
 {% endif %}
 {% endblock %}

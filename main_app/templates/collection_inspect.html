@@ -3,8 +3,16 @@
 {{ collection.name }}
 {% endblock %}
 {% block content %}
-<h1 class="title is-1">{{ collection.name }}</h1>
-<button class="button is-danger"><a href="/collections/{{collection.id}}/delete">Delete Collection</a></button>
+<div class="columns is-vcentered">
+    <div class="column">
+        <h1 class="title is-1 mx-5">{{ collection.name }}</h1>
+    </div>
+    <div class="column">
+        <a class="button is-danger m-5" href="/collections/{{collection.id}}/delete">Delete Collection</a>
+    </div>
+</div>
+<!-- <h1 class="title is-1">{{ collection.name }}</h1>
+<button class="button is-danger"><a href="/collections/{{collection.id}}/delete">Delete Collection</a></button> -->
 <ul>
     <div class="columns is-multiline mx-5">
         {% for watch in collection.watches.all %}
@@ -12,14 +20,14 @@
             <a href="{% url 'inspect' watch.pk %}">
                 <div class="card">
                     <div class="card-image">
-                        <figure class="image">
-                            <img src="{{watch.image}}" />
+                        <figure class="image is-square">
+                            <img src="{{watch.image}}" style="object-fit: cover; object-position: center;"/>
                         </figure>
                     </div>
                     <div class="card-content">
-                        <h3 class="title is-3">{{watch.name}}</h3>
-                        <p>Size: {{watch.size}}</p>
-                        <p>Color: {{watch.primary_color}}</p>
+                        <h3 class="title is-5">{{watch.name}}</h3>
+                        <p class="is-size-7">Size: {{watch.size}}</p>
+                        <p class="is-size-7">Color: {{watch.primary_color}}</p>
                     </div>
                 </div>
             </a>
