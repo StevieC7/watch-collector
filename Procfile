@@ -1,0 +1,1 @@
+web: gunicorn watch_collector.wsgi
