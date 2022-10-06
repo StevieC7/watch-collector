@@ -5,6 +5,7 @@ Home
 {% block content %}
 <h1 class="title is-1">Watch Collector</h1>
 <h2 class="subtitle">The home for watch collections. Yours, your friends', or celebrities', we don't care. Track 'em here.</h2>
+{% if user.is_authenticated %}
 {% if collections %}
 <h2 class="title is-2 mt-6"><a href="{% url 'collection_index' %}">Collections</a></h2>
 <div class="columns is-multiline">
@@ -30,6 +31,8 @@ Home
     </div>
     {% endfor %}
 </div>
+{% endif %}
+{% endif %}
 {% for brand in brands %}
 <h2 class="title is-2 mt-6"><a href="{% url 'brand_inspect' brand.pk %}">{{ brand.name }}</a></h2>
 <div class="columns is-multiline">
@@ -51,5 +54,4 @@ Home
     {% endfor %}
 </div>
 {% endfor %}
-{% endif %}
 {% endblock %}

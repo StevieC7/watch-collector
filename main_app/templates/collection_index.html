@@ -42,7 +42,7 @@ All Collections
 <p>You have no collections.</p>
 <a class="button is-primary" href="/collections/new">Create Collection</a>
 {% else %}
-<p>You are not signed in. <a>Create an account</a> or <a href="{% url 'login' %}">log in</a> to manage collections.</p>
+<p>You are not signed in. <a href="{% url 'signup' %}">Create an account</a> or <a href="{% url 'login' %}">log in</a> to manage collections.</p>
 {% endif %}
 {% endif %}
 {% endblock %}
